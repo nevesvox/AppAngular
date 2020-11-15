@@ -2,6 +2,10 @@
 
 Este projeto foi gerado com [Angular CLI](https://github.com/angular/angular-cli) version 8.2.2.
 
+## API
+
+[API do Projeto](https://github.com/nevesvox/AppAngularApi).
+
 ## Dependencies
 
 Possuir o [Node.js / npm](https://nodejs.org/en/) instalado.
