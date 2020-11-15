@@ -1,0 +1,89 @@
+<body>
+    <div class="">
+        <div class="row">
+            <div class="col-md-6 mx-auto bottomDistance">
+                <div class="myform form">
+                    <div class="logo ">
+                        <div class="col-md-12 text-center">
+                            <h1>{{ tituloExibido }}</h1>
+                        </div>
+                    </div>
+                    <form [formGroup]="formCategoria">
+                        <div class="form-group">
+                            <label for="nomeCategoria">Nome da Categoria</label>
+                            <input name="nomeCategoria" class="form-control" id="nomeCategoria"
+                                [(ngModel)]="nomeCategoria" formControlName="nomeCategoria"
+                                [ngClass]="{'is-invalid': submitted && possuiErro('nomeCategoria')}">
+                            <div class="invalid-feedback"
+                                *ngIf="possuiErro('nomeCategoria') && possuiErro('nomeCategoria')['required']">
+                                Por favor informe um Nome para a Categoria
+                            </div>
+                            <div class="invalid-feedback"
+                                *ngIf="possuiErro('nomeCategoria') && possuiErro('nomeCategoria')['maxlength']">
+                                O Nome não pode ter mais que
+                                {{ possuiErro('nomeCategoria')['maxlength'].requiredLength }} caracteres
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="descricaoCategoria">Descrição</label>
+                            <input name="descricaoCategoria" id="descricaoCategoria" class="form-control"
+                                [(ngModel)]="descricaoCategoria"
+                                formControlName="descricaoCategoria"
+                                [ngClass]="{'is-invalid': submitted && possuiErro('descricaoCategoria')}">
+                            <div class="invalid-feedback"
+                                *ngIf="possuiErro('descricaoCategoria') && possuiErro('descricaoCategoria')['required']">
+                                Por favor informe uma Descrição para a Categoria
+                            </div>
+                            <div class="invalid-feedback"
+                                *ngIf="possuiErro('descricaoCategoria') && possuiErro('descricaoCategoria')['maxlength']">
+                                A Descrição não pode ter mais que
+                                {{ possuiErro('descricaoCategoria')['maxlength'].requiredLength }} caracteres
+                            </div>
+                        </div>
+                        <div class="col-md-12 text-center ">
+
+                            <div class="spinner-border spinnerDist" role="status" *ngIf="carregando">
+                                <span class="sr-only">Carregando...</span>
+                            </div>
+                            <button *ngIf="!telaAlteracao" type="submit" class=" btn btn-block mybtn btn-primary tx-tfm"
+                                (click)="salvaCategoria()">Salvar Categoria</button>
+
+                            <button *ngIf="telaAlteracao" type="submit" class=" btn btn-block mybtn btn-success tx-tfm"
+                                (click)="salvaAlteracoesCategoria()">Alterar Categoria</button>
+
+                            <button type="button" class="btn btn-block mybtn btn-default tx-tfm"
+                                (click)="cancelaRegistro()">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6 mx-auto bottomDistance">
+                <div class="myform form">
+                    <div class="logo mb-3">
+                        <div class="col-md-12 text-center">
+                            <h1>Categorias</h1>
+                        </div>
+                    </div>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Descrição</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let categoria of categorias">
+                                <td>{{ categoria.NOME }}</td>
+                                <td>{{ categoria.DESCRICAO }}</td>
+                                <td><img class="edit" src="./../../../assets/editar.png"
+                                        (click)="editarCategoria(categoria)"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

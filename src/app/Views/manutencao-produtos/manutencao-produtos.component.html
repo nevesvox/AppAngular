@@ -1,0 +1,116 @@
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="myform form ">
+                    <div class="logo mb-3">
+                        <div class="col-md-12 text-center">
+                            <h1>{{ titulo }}</h1>
+                        </div>
+                    </div>
+                    <form [formGroup]="formProduto">
+                        <div class="form-group">
+                            <label for="nomeProduto">Nome do Produto</label>
+                            <input name="nomeProduto" class="form-control" id="nomeProduto"
+                                formControlName="nomeProduto" [(ngModel)]="produtoAlteracao.nome"
+                                [ngClass]="{'is-invalid': submitted && possuiErro('nomeProduto')}">
+                            <div class="invalid-feedback"
+                                *ngIf="possuiErro('nomeProduto') && possuiErro('nomeProduto')['required']">
+                                Por favor informe um Nome para o Produto
+                            </div>
+                            <div class="invalid-feedback"
+                                *ngIf="possuiErro('nomeProduto') && possuiErro('nomeProduto')['maxlength']">
+                                O Nome não pode ter mais que
+                                {{ possuiErro('nomeProduto')['maxlength'].requiredLength }} caracteres
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="descricaoProduto">Descrição</label>
+                            <input name="descricaoProduto" id="descricaoProduto" class="form-control"
+                                formControlName="descricaoProduto" [(ngModel)]="produtoAlteracao.descricao"
+                                [ngClass]="{'is-invalid': submitted && possuiErro('descricaoProduto')}">
+                            <div class="invalid-feedback"
+                                *ngIf="possuiErro('descricaoProduto') && possuiErro('descricaoProduto')['required']">
+                                Por favor informe um Nome para o Produto
+                            </div>
+                            <div class="invalid-feedback"
+                                *ngIf="possuiErro('descricaoProduto') && possuiErro('descricaoProduto')['maxlength']">
+                                O Nome não pode ter mais que
+                                {{ possuiErro('descricaoProduto')['maxlength'].requiredLength }} caracteres
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="valorProduto">Valor</label>
+                            <input currencyMask [(ngModel)]="valorProduto"
+                                [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" name="valorProduto"
+                                id="valorProduto" class="form-control textoCentro" formControlName="valorProduto"
+                                [ngClass]="{'is-invalid': submitted && possuiErro('valorProduto')}">
+                            <div class="invalid-feedback"
+                                *ngIf="possuiErro('valorProduto') && possuiErro('valorProduto')['required']">
+                                Por favor informe o Valor do Produto
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="estoqueProduto">Quantidade Estoque</label>
+                            <input type="number" name="estoqueProduto" mask='{R$}' id="estoqueProduto" min="0"
+                                class="form-control textoCentro" formControlName="estoqueProduto"
+                                [(ngModel)]="produtoAlteracao.estoque"
+                                [ngClass]="{'is-invalid': submitted && possuiErro('estoqueProduto')}">
+                            <div class="invalid-feedback"
+                                *ngIf="possuiErro('estoqueProduto') && possuiErro('estoqueProduto')['required']">
+                                Por favor informe a Quantidade de Estoque
+                            </div>
+                            <div class="invalid-feedback"
+                                *ngIf="possuiErro('estoqueProduto') && possuiErro('estoqueProduto')['min']">
+                                O Nome não pode ser negativo
+                            </div>
+                        </div>
+
+
+                        <label for="selectCategoria">Categoria</label>
+                        <div class="form-group input-group">
+                            <select class="form-control" name="selectCategoria" id="selectCategoria"
+                                formControlName="selectCategoria"
+                                [ngClass]="{'is-invalid': submitted && possuiErro('selectCategoria')}"
+                                [(ngModel)]="produtoAlteracao.idCategoria">
+                                <option value="{{ categoria.ID }}" *ngFor="let categoria of categorias">
+                                    {{ categoria.NOME }} </option>
+                            </select>
+                            <div class="invalid-feedback"
+                                *ngIf="possuiErro('selectCategoria') && possuiErro('selectCategoria')['required']">
+                                Por favor informe a Quantidade de Estoque
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 text-center ">
+
+                            <div class="spinner-border spinnerDist" role="status" *ngIf="carregando">
+                                <span class="sr-only">Carregando...</span>
+                            </div>
+
+                            <button *ngIf="!telaAlteracao" type="submit" class=" btn btn-block mybtn btn-primary tx-tfm"
+                                (click)="salvarProduto()">
+                                Salvar Produto</button>
+
+                            <button *ngIf="telaAlteracao" type="submit" class=" btn btn-block mybtn btn-success tx-tfm"
+                                (click)="atualizaProduto()">Alterar Produto</button>
+
+                            <button *ngIf="telaAlteracao" type="submit" class=" btn btn-block mybtn btn-danger tx-tfm"
+                                (click)="excluirProduto()">
+                                Excluir Produto</button>
+
+                            <button type="submit" class="btn btn-block mybtn btn-default tx-tfm"
+                                (click)="cancelaAcao()">
+                                Cancelar</button>
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

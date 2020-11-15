@@ -1,0 +1,74 @@
+<section id="sidebar">
+    <div class="border-bottom">
+        <h4 id="">Filtros</h4>
+    </div>
+    <div class="py-2 border-bottom ml-3">
+        <h6 class="font-weight-bold">Busca</h6>
+        <div id="orange"><span class="fa fa-minus"></span></div>
+        <form class="form-inline ">
+            <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Procurar Produtos"
+                aria-label="Search" [(ngModel)]="pesquisaProduto" name="pesquisaProduto">
+            <i class="fas fa-search" aria-hidden="true" (click)="procuraProduto()"></i>
+        </form>
+        <br>
+        <h6 class="font-weight-bold">Valor</h6>
+        <div id="orange"><span class="fa fa-minus"></span></div>
+        <div class="form-group">
+            <label for="descricaoProduto">Valor minímo</label>
+            <input name="descricaoProduto" id="descricaoProduto" class="form-control textoCentro"
+                [(ngModel)]="valorMinimo" name="valorMinimo" currencyMask
+                [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
+
+            <label for="descricaoProduto">Valor máximo</label>
+            <input name="descricaoProduto" id="descricaoProduto" class="form-control textoCentro"
+                [(ngModel)]="valorMaximo" name="valorMaximo" currencyMask
+                [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
+            <br>
+            <button type="submit" class="btn btn-block mybtn btn-primary tx-tfm textoBranco" (click)="procuraProduto()">
+                Buscar</button>
+            <button type="submit" class="btn btn-block mybtn btn-default tx-tfm" (click)="limpaValores()">
+                Limpar Valores</button>
+        </div>
+        <h6 class="font-weight-bold">Categorias</h6>
+        <div id="orange"><span class="fa fa-minus"></span></div>
+        <form>
+            <div class="form-group">
+                <ul class="list-group list-group-flush">
+                    <li *ngFor="let categoria of categorias" (click)="buscaCategoriaSelecionada(categoria)"
+                        class="list-group-item" data-toggle="tooltip" data-placement="right" title="{{ categoria.DESCRICAO }}">{{ categoria.NOME }}</li>
+                </ul>
+            </div>
+        </form>
+
+    </div>
+</section>
+
+<body>
+    <div class="row" *ngIf="produtos$ | async as produtos; else loading">
+        <div class="card" *ngFor="let produto of produtos">
+            <!-- Card content -->
+            <div class="card-body">
+                <span class="categoriaLayout">{{ produto.categoriaNome }}</span>
+                <br><br>
+                <h4 class="card-title">{{ produto.nomeProduto }}</h4>
+                <p class="card-text">{{ produto.descricaoProduto }}</p>
+                <div class="price">
+                    <h4 class="card-title"> {{ produto.valorProduto | currency:'BRL'}} </h4>
+                </div>
+                <a class="btn btn-block mybtn btn-primary tx-tfm textoBranco"
+                    (click)="alterarProduto(produto)">Selecionar</a>
+            </div>
+        </div>
+        <div *ngIf="isEmptyObject(produtos)" class="cardSemProduto">
+            <img src="./../../../assets/esvaziar.png">
+            <br><br>
+            <span class="textSemProduto">Nenhum produto encontrado</span>
+        </div>
+    </div>
+    <ng-template #loading>
+        <div class="spinner-border positionSpinner" role="status">
+            <span class="sr-only">Carregando...</span>
+        </div>
+    </ng-template>
+
+</body>

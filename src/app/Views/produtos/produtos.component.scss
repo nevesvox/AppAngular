@@ -1,0 +1,161 @@
+.card {
+    width: 350px;
+    height: auto !important;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 10px 5px 5px rgba(52, 78, 194, 0.418);
+    border-style: solid !important;
+    border-color: rgba(0, 0, 0, 0.062) !important;
+    border-radius: 20px !important;
+}
+
+.price {
+    background-color: rgba(86, 86, 129, 0.226);
+    border-radius: 10px;
+    padding: 5px;
+    align-items: center;
+    margin-bottom: 10px;
+
+    h4 {
+        margin-top: 5px;
+    }
+}
+
+.categoriaLayout{
+    background-color: rgba(255, 166, 0, 0.205);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.filtros {
+    margin-top: 10px;
+    width: 100%;
+    height: 50px;
+    //background-color: beige;
+    border-radius: 10px;
+    border:1px solid rgba(0, 0, 0, 0.226);
+    margin-bottom: 30px;
+}
+
+.position {
+    margin-top: 0px !important;
+    position: static;
+    float: right;
+    margin-right: 20px;
+}
+
+.positionSpinner{
+    margin-top: 30%;
+    margin-left: 35%;
+    text-align: center;
+}
+
+.labelFiltros {
+    margin-left: 10px;
+}
+
+#search {
+    outline: none;
+    border: none;
+    display: inline-block
+}
+
+#burgundy {
+    color: rgb(153, 40, 59)
+}
+
+#orange,
+select,
+.btn {
+    color: rgba(0, 0, 255, 0.411)
+}
+
+
+.fa-user-o,
+.fa-shopping-cart {
+    font-size: 20px;
+    padding: 4px
+}
+
+.cardSemProduto {
+    img {
+        max-width: 50px;
+    }
+    .textSemProduto{
+        font-size: large;
+        font-weight: bold;
+    }
+    margin-top: 30%;
+    margin-left: 35%;
+    text-align: center;
+    margin-bottom: 140px;
+}
+
+
+@media(min-width:1200px) {
+    .search-nav-item {
+        margin-left: 400px;
+        width: 350px
+    }
+
+    .fa-user-o {
+        margin-left: 300px
+    }
+
+    .text {
+        display: none
+    }
+
+    .fa-user-o,
+    .fa-shopping-cart {
+        font-size: 20px;
+        padding-left: 20px
+    }
+
+    #sidebar {
+        width: 30%;
+        padding: 20px;
+        float: left
+    }
+
+    #products {
+        width: 70%;
+        padding: 10px;
+        margin: 0;
+        float: right
+    }
+
+    .card {
+        width: 300px;
+        height: 330px;
+        border: none
+    }
+
+    .card-img-top {
+        width: 295px;
+        height: 200px;
+        border-radius: 10px
+    }
+
+    del {
+        padding-right: 2px
+    }
+
+    .filter,
+    #mobile-filter {
+        display: none
+    }
+}
+
+
+
+
+
+
+
+
+
+
